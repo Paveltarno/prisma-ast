@@ -28,16 +28,19 @@ export interface IPrismaSchemaASTModelField extends IPrismaSchemaASTNode {
   attributes: IPrismaSchemaASTModelFieldAttribute[]
 }
 
-export interface IPrismaSchemaASTModelFieldAttribute extends IPrismaSchemaASTNode {
+export interface IPrismaSchemaASTModelFieldAttribute
+  extends IPrismaSchemaASTNode {
   type: PrismaSchemaASTTypes.ATTRIBUTE
   value: string
 }
 
-export interface IPrismaSchemaASTModelFieldPrimitive extends IPrismaSchemaASTModelField {
+export interface IPrismaSchemaASTModelFieldPrimitive
+  extends IPrismaSchemaASTModelField {
   type: PrismaSchemaASTTypes.MODEL_FIELD_PRIMITIVE
 }
 
-export interface IPrismaSchemaASTModelFieldRelation extends IPrismaSchemaASTModelField {
+export interface IPrismaSchemaASTModelFieldRelation
+  extends IPrismaSchemaASTModelField {
   type: PrismaSchemaASTTypes.MODEL_FIELD_RELATION
   hasMany: boolean
 }
