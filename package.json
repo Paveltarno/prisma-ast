@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npm run lint && tsc",
+    "build": "npm run lint && npm run build:ts && npm run build:parser",
+    "build:ts": "rm -rf build && tsc",
+    "build:parser": "pegjs ./src/parser/prisma-ast.pegjs -o ./build/parser/prisma-ast.js --format=es",
+    "test": "jest",
     "lint": "npm run lint:prettier && npm run lint:tslint",
     "lint:prettier": "prettier ./src/**/*.ts --write",
     "lint:tslint": "tslint -c tslint.json 'src/**/*.ts'"
@@ -17,9 +20,12 @@
   "author": "Pavel Tarnopolsky",
   "license": "UNLICENSED",
   "devDependencies": {
+    "@types/jest": "^24.0.23",
+    "@types/node": "^12.12.14",
     "husky": "^3.1.0",
     "jest": "^24.9.0",
     "prettier": "^1.19.1",
+    "ts-jest": "^24.2.0",
     "tslint": "^5.20.1",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.7.2"

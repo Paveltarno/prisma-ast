@@ -1,10 +1,15 @@
 {
   "compilerOptions": {
+      "moduleResolution": "node",
       "outDir": "./build",
       "allowJs": true,
-      "target": "esnext"
+      "target": "es2020"
   },
   "include": [
       "./src/**/*"
+  ],
+  "exclude": [
+    "./src/**/*.test.*",
+    "./src/**/tests"
   ]
 }
