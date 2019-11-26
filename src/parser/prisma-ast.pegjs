@@ -1,14 +1,9 @@
-start = 
-  modelDef*
+buildTree = 
+  nodes:modelDef* { return({ type: 'ast', nodes }) }
 
-// Models
-modelDef
-  = "model" s modelName:modelName fields:modelFieldsBlock { return({type: 'model', name: modelName, fields }) }
+blockStart = s* "{" s*
+blockEnd = s* "}" s*
 
-modelName "modelName"
-  = string
-
-// Model Fields
 modelFieldsBlock
 	= blockStart fields:modelFieldRow+ blockEnd { return(fields) }
 
@@ -29,8 +24,8 @@ modelFieldType
         attributes}) 
     }
     
-modelFieldAttribute "modelFieldAttributeName"
-	= ws "@" attribute:string { return(attribute) }
+modelFieldAttribute "modelFieldAttributeValue"
+	= ws "@" value:string { return({type: 'attribute', value} ) }
     
 modelFieldOptional
 	= "?"
@@ -47,9 +42,11 @@ modelFieldTypeRelation "relationFieldName"
 modelFieldRelationName "modelFieldRelationName"
 	= string
 
-// Primitives
-blockStart = s* "{" s*
-blockEnd = s* "}" s*
+modelDef
+  = "model" s modelName:modelName fields:modelFieldsBlock { return({type: 'model', name: modelName, fields }) }
+
+modelName "modelName"
+  = string
 
 string
   = $ [a-zA-Z0-9]+
