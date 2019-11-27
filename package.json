@@ -13,11 +13,6 @@
     "lint:prettier": "prettier ./src/**/*.ts --write",
     "lint:tslint": "tslint -c tslint.json 'src/**/*.ts'"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint"
-    }
-  },
   "author": "Pavel Tarnopolsky",
   "license": "UNLICENSED",
   "devDependencies": {
@@ -26,6 +21,7 @@
     "@types/ramda": "^0.26.36",
     "husky": "^3.1.0",
     "jest": "^24.9.0",
+    "lint-staged": "^9.5.0",
     "prettier": "^1.19.1",
     "ts-jest": "^24.2.0",
     "tslint": "^5.20.1",
@@ -36,5 +32,17 @@
     "common-tags": "^1.8.0",
     "pegjs": "^0.11.0-master.b7b87ea",
     "ramda": "^0.26.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts}": [
+      "tslint -c tslint.json",
+      "prettier --write",
+      "git add"
+    ]
   }
 }
