@@ -1,15 +1,12 @@
 {
   "compilerOptions": {
       "moduleResolution": "node",
+      "module": "commonjs",
       "outDir": "./build",
-      "allowJs": true,
-      "target": "es2020"
+      "target": "es2020",
+      "declaration": true
   },
-  "include": [
-      "./src/**/*"
+  "files": [
+      "./src/index.ts"
   ],
-  "exclude": [
-    "./src/**/*.test.*",
-    "./src/**/tests"
-  ]
 }
