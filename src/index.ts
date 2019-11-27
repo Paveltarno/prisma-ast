@@ -1,7 +1,2 @@
-class DummyClass {
-  public food = `sandwitch`
-
-  foo() {
-    let q: Boolean
-  }
-}
+export * from './parser/parsePrismaSchema';
+export * from './printer/printPrismaSchema';
