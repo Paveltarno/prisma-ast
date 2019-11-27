@@ -8,7 +8,7 @@ import {
   IPrismaSchemaASTModelFieldPrimitive,
   IPrismaSchemaASTModelFieldAttribute,
   IPrismaSchemaASTModelFieldRelation,
-} from '../types/PrismaSchemaAst'
+} from './types/PrismaSchemaAst'
 
 type IPrismaSchemaPrinter<T = IPrismaSchemaASTNode> = (node: T) => string
 

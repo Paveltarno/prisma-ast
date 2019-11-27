@@ -1,2 +1,2 @@
-export * from './parser/parsePrismaSchema';
-export * from './printer/printPrismaSchema';
+export * from './parsePrismaSchema';
+export * from './printPrismaSchema';

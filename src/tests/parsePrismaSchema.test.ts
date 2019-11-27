@@ -1,5 +1,3 @@
-import { readFile } from 'fs'
-import { promisify } from 'util'
 import { parsePrismaSchema } from '../parsePrismaSchema'
 import {
   IPrismaSchemaAST,
@@ -7,14 +5,12 @@ import {
   IPrismaSchemaASTModelFieldPrimitive,
   IPrismaSchemaASTModelFieldRelation,
   PrismaSchemaASTTypes,
-} from '../../types/PrismaSchemaAst'
-
-const readFileAsync = promisify(readFile)
-const TEST_SCHEMA_PATH = `${__dirname}/test-schema.prisma`
+} from '../types/PrismaSchemaAst'
+import { getTestSchema } from './helpers'
 
 describe('parser', () => {
   it('parses the test schema', async () => {
-    const testSchemaBuffer = await readFileAsync(TEST_SCHEMA_PATH)
+    const testSchema = await getTestSchema()
     const expected: IPrismaSchemaAST = {
       type: PrismaSchemaASTTypes.AST,
       nodes: [
@@ -107,7 +103,7 @@ describe('parser', () => {
         },
       ] as IPrismaSchemaASTModel[],
     }
-    const result = parsePrismaSchema(testSchemaBuffer.toString())
+    const result = parsePrismaSchema(testSchema)
     expect(expected).toEqual(result)
   })
 

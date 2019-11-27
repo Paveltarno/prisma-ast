@@ -5,10 +5,12 @@ import {
   IPrismaSchemaASTModelFieldPrimitive,
   IPrismaSchemaASTModelFieldRelation,
   IPrismaSchemaASTModel,
-} from '../../types/PrismaSchemaAst'
+} from '../types/PrismaSchemaAst'
+import { getTestSchema } from './helpers'
 
 describe('printPrismaSchema', () => {
-  it('prints a pretty string', () => {
+  it('prints a pretty string', async () => {
+    const targetSchema = await getTestSchema();
     const testAst: IPrismaSchemaAST = {
       type: PrismaSchemaASTTypes.AST,
       nodes: [
@@ -102,6 +104,6 @@ describe('printPrismaSchema', () => {
       ] as IPrismaSchemaASTModel[],
     }
     const result = printPrismaSchema(testAst)
-    expect(result).toMatchSnapshot()
+    expect(result).toEqual(targetSchema);
   })
 })
