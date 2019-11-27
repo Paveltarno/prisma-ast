@@ -1,5 +1,5 @@
 import { IPrismaSchemaAST } from '../types/PrismaSchemaAst'
-import { parse } from './prisma-ast'
+import { parse } from '../../vendor/prisma-ast'
 
 /**
  * Parses a Prisma schema and returns an AST
