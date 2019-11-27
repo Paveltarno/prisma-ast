@@ -1,7 +1,7 @@
 {
   "name": "prisma-ast",
   "version": "1.0.0",
-  "description": "",
+  "description": "A printer and parser for Prisma.io's schema",
   "main": "index.js",
   "scripts": {
     "build": "npm run build:parser && npm run lint && npm run build:ts",
@@ -22,6 +22,7 @@
   "devDependencies": {
     "@types/jest": "^24.0.23",
     "@types/node": "^12.12.14",
+    "@types/ramda": "^0.26.36",
     "husky": "^3.1.0",
     "jest": "^24.9.0",
     "prettier": "^1.19.1",
@@ -31,6 +32,8 @@
     "typescript": "^3.7.2"
   },
   "dependencies": {
-    "pegjs": "^0.11.0-master.b7b87ea"
+    "common-tags": "^1.8.0",
+    "pegjs": "^0.11.0-master.b7b87ea",
+    "ramda": "^0.26.1"
   }
 }

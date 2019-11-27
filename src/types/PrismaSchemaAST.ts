@@ -7,7 +7,7 @@ export enum PrismaSchemaASTTypes {
 }
 
 export interface IPrismaSchemaASTNode {
-  type: string
+  type: PrismaSchemaASTTypes
 }
 
 export interface IPrismaSchemaAST extends IPrismaSchemaASTNode {
