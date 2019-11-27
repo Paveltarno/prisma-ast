@@ -1,5 +1,4 @@
-import { map } from 'ramda'
-import { codeBlock } from 'common-tags'
+import { autoIndentList } from './utils/autoIndentList'
 import {
   IPrismaSchemaAST,
   IPrismaSchemaASTNode,
@@ -10,16 +9,17 @@ import {
   IPrismaSchemaASTModelFieldRelation,
 } from './types/PrismaSchemaAst'
 
+const NUM_OF_SPACES_IN_GAP = 2
+
 type IPrismaSchemaPrinter<T = IPrismaSchemaASTNode> = (node: T) => string
 
 const printAST: IPrismaSchemaPrinter<IPrismaSchemaAST> = astNode =>
-  map(printPrismaNode, astNode.nodes).join('\n\n')
+  `${astNode.nodes.map(printPrismaNode).join('\n\n')}`
 
 const printModel: IPrismaSchemaPrinter<IPrismaSchemaASTModel> = modelNode =>
-  codeBlock`${PrismaSchemaASTTypes.MODEL} ${modelNode.name} {
-    ${map(printPrismaNode, modelNode.fields)}
-}
-`
+  `${PrismaSchemaASTTypes.MODEL} ${modelNode.name} {
+${autoIndentList(modelNode.fields.map(printPrismaNode), NUM_OF_SPACES_IN_GAP)}
+}`
 
 const printFieldPrimitive: IPrismaSchemaPrinter<IPrismaSchemaASTModelFieldPrimitive> = ({
   name,
@@ -27,9 +27,8 @@ const printFieldPrimitive: IPrismaSchemaPrinter<IPrismaSchemaASTModelFieldPrimit
   isOptional,
   attributes,
 }) =>
-  `${name} ${fieldType}${printIsOptional(isOptional)} ${map(
+  `${name} ${fieldType}${printIsOptional(isOptional)} ${attributes.map(
     printPrismaNode,
-    attributes,
   )}`
 
 const printFieldRelation: IPrismaSchemaPrinter<IPrismaSchemaASTModelFieldRelation> = ({
@@ -41,7 +40,7 @@ const printFieldRelation: IPrismaSchemaPrinter<IPrismaSchemaASTModelFieldRelatio
 }) =>
   `${name} ${fieldType}${printHasMany(hasMany)}${printIsOptional(
     isOptional,
-  )} ${map(printPrismaNode, attributes)}`
+  )} ${attributes.map(printPrismaNode)}`
 
 const printAttribute: IPrismaSchemaPrinter<IPrismaSchemaASTModelFieldAttribute> = ({
   value,

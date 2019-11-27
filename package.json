@@ -29,9 +29,7 @@
     "typescript": "^3.7.2"
   },
   "dependencies": {
-    "common-tags": "^1.8.0",
-    "pegjs": "^0.11.0-master.b7b87ea",
-    "ramda": "^0.26.1"
+    "pegjs": "^0.11.0-master.b7b87ea"
   },
   "husky": {
     "hooks": {
